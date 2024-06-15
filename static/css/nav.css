@@ -1,0 +1,126 @@
+header {
+    background-color: var(--secondary);
+    color: var(--light);
+    padding-bottom: 5px;
+}
+
+nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 20px;
+    gap: 10px;
+}
+
+nav img {
+    width: 150px;
+    order: 1;
+    cursor: pointer;
+}
+
+nav>ul {
+    display: flex;
+    list-style: none;
+    gap: 10px;
+    order: 2;
+}
+
+nav form {
+    width: 100%;
+    order: 3;
+    max-width: 700px;
+}
+
+nav form input {
+    width: 100%;
+    padding: 10px;
+    outline: none;
+    border: 2px dashed var(--light);
+    background-color: var(--secondary);
+    color: var(--light);
+    border-radius: 10px;
+}
+
+::placeholder {
+    color: var(--light);
+    font-size: 16px;
+}
+
+nav>ul li svg {
+    fill: var(--light);
+}
+
+nav button {
+    all: unset;
+    cursor: pointer;
+}
+
+nav>ul li:last-child {
+    position: relative;
+}
+
+nav #drop {
+    display: none;
+    list-style: none;
+    background-color: var(--primary);
+    padding: 15px;
+    border-radius: 6px;
+    position: absolute;
+    top: 20px;
+    right: 0;
+}
+
+nav #drop a {
+    color: var(--light);
+    white-space: nowrap;
+}
+
+nav #drop li {
+    margin-top: 10px;
+}
+
+nav button:is(:hover, :focus)~#drop {
+    display: block;
+}
+
+@media (min-width:768px) {
+    nav {
+        flex-wrap: nowrap;
+    }
+
+    nav form {
+        order: 2;
+        width: 70%;
+    }
+
+    nav ul {
+        order: 3;
+    }
+}
+
+
+
+
+header>ul {
+    list-style: none;
+    width: fit-content;
+    margin: 10px auto 5px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 10px;
+}
+
+header>ul li a {
+    background-color: var(--secondary);
+    padding: 4px 10px;
+    border-radius: 20px;
+    box-shadow: 0 0 4px var(--light);
+    transition: 1s;
+}
+
+header>ul li a:hover {
+    background-color: var(--primary);
+}

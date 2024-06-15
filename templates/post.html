@@ -1,0 +1,136 @@
+   {% extends "base.html" %} {% load static %}
+   {% block main %}
+   
+   <main>
+        <section class="detail">
+            <div class="firstdiv">
+                {% if post.image %}
+                    <img src="{{post.image.url}}" alt="Main 1" loading="lazy">
+                    {% else %}
+                    <img src="{% static "/img/main 1.jpg" %}" alt="Main 1" loading="lazy">
+                    {% endif %}
+                <h1>{{post.title}}</h1>
+                <div style="width: 800px;">{{post.content|safe}}</div>
+
+                {% if post.image %}
+                    <img src="{{post.image.url}}" alt="Main 1" loading="lazy">
+                    {% else %}
+                    <img src="{% static "/img/main 1.jpg" %}" alt="Main 1" loading="lazy">
+                    {% endif %}
+                <h1>{{post.title}}</h1>
+                <div style="width: 800px;">{{post.content|safe}}</div>
+
+                <div class="postnavigation">
+                    {% if post.previous %}
+                    <a href="{% url "post" post.previous.id %}">
+                        <span><svg xmlns="http://www.w3.org/2000/svg" height="1em"
+                                viewBox="0 0 320 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+                                <path
+                                    d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z" />
+                            </svg></span>
+                        <div>
+                            <h3>Previous Post</h3>
+                            <h4>{{post.previous}}</h4>
+                        </div>
+                    </a>
+                    {% else %}
+                    <a href="#">
+                        <span><svg xmlns="http://www.w3.org/2000/svg" height="1em"
+                                viewBox="0 0 320 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+                                <path
+                                    d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z" />
+                            </svg></span>
+                        <div>
+                            <h3>Previous Post</h3>
+                            <h4>{{post.previous}}</h4>
+                        </div>
+                    </a>
+                    {% endif %}
+
+                    {% if post.next %}
+                    <a href="{% url "post" post.next.id %}">
+
+                        <div>
+                            <h3>Next Post</h3>
+                            <h4>{{post.next}}</h4>
+                        </div>
+                        <span><svg xmlns="http://www.w3.org/2000/svg" height="1em"
+                                viewBox="0 0 320 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+                                <path
+                                    d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z" />
+                            </svg></span>
+                    </a>
+                    {% else %}
+                    <a href="#">
+
+                        <div>
+                            <h3>Next Post</h3>
+                            <h4>Lorem ipsum dolo</h4>
+                        </div>
+                        <span><svg xmlns="http://www.w3.org/2000/svg" height="1em"
+                                viewBox="0 0 320 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+                                <path
+                                    d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z" />
+                            </svg></span>
+                    </a>
+                    {% endif %}
+                </div>
+                <ul class="cmt-count">
+                    <li>2 Comments</li>
+                    <li>30+ Comments</li>
+                </ul>
+                <ul class="coment">
+                    {% for comment in comment %}
+                    <li>
+
+                        <div>
+                            <h2>{{comment.name}}</h2>
+                            <h5><i>{{comment.created_at}}</i></h5>
+                            <p>{{comment.comment}}</p>
+                            <button>Reply</button>
+                        </div>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="seconddiv">
+                <h1>Latest Post</h1>
+                <hr>
+                <div>
+                    {% for post in latest_posts %}
+                    <div>
+                    {% if post.image %}
+                    <img src="{{post.image.url}}" alt="Main 1" loading="lazy">
+                    {% else %}
+                    <img src="{% static "/img/main 1.jpg" %}" alt="Main 1" loading="lazy">
+                    {% endif %}
+                        <h3><a href="#">{{post.category}}</a> <br> <a href="{% url "post" post.id %}">{{post.title}}</a></h3>  
+                        <h4></h4>
+                    </div>
+                    {% endfor %}
+                  
+                </div>
+            </div>
+        </section>
+        <form action='{% url "comment" post.id %}' method='post'>
+            {% csrf_token %}
+            <h1>Write Your Comment</h1>
+            <div>
+                <div>
+                    <label for="">Name</label><br>
+                    <input type="text" name='name' placeholder="Name">
+                </div>
+
+                <div>
+                    <label for="">Email</label><br>
+                    <input type="email" name='email' placeholder="Email">
+                </div>
+                <div class="textarea">
+                    <label for="">Comment</label><br>
+                    <textarea cols="30" name='comment' rows="10"></textarea>
+                </div>
+                <button>Post Comment</button>
+            </div>
+        </form>
+    </main>
+{% endblock main %}
